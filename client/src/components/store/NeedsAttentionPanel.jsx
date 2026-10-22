@@ -40,7 +40,7 @@ export default function NeedsAttentionPanel({ batches = [] }) {
               return (
                 <div
                   key={item._id}
-                  className={`grid grid-cols-[1fr_80px_110px_40px] items-center gap-3 py-2.5 px-3 border-l-[3px] ${borderClass} hover:bg-paper/60 transition-colors`}
+                  className={`grid grid-cols-[1fr_auto_auto_auto] items-center gap-2.5 sm:gap-3.5 py-2.5 px-3 border-l-[3px] ${borderClass} hover:bg-paper/60 transition-colors`}
                 >
                   {/* Medicine Name, Strength, Batch & Rack */}
                   <div className="min-w-0 pr-1">
@@ -61,7 +61,7 @@ export default function NeedsAttentionPanel({ batches = [] }) {
                   </div>
 
                   {/* Units */}
-                  <div className="text-right whitespace-nowrap">
+                  <div className="text-right whitespace-nowrap shrink-0">
                     <span className="text-[14px] font-sans font-medium tabular-nums text-ink">
                       {item.quantity}
                     </span>
@@ -71,12 +71,12 @@ export default function NeedsAttentionPanel({ batches = [] }) {
                   </div>
 
                   {/* Expiry Badge */}
-                  <div className="flex justify-center">
-                    <ExpiryBadge status={item.expiryStatus} daysLeft={item.daysLeft} />
+                  <div className="flex justify-center shrink-0">
+                    <ExpiryBadge expiryStatus={item.expiryStatus} daysLeft={item.daysLeft} />
                   </div>
 
                   {/* Quiet View Button */}
-                  <div className="text-right">
+                  <div className="text-right shrink-0">
                     <Link
                       to="/store/alerts"
                       className="text-[13px] font-sans text-ink-soft hover:text-ink font-medium hover:underline p-1"

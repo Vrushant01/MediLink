@@ -37,11 +37,11 @@ export default function Badge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 h-[22px] px-2 rounded-[6px] text-[12px] font-sans font-medium border select-none ${current.wrap} ${className}`}
+      className={`inline-flex items-center gap-1.5 h-[22px] px-2 rounded-[6px] text-[12px] font-sans font-medium border select-none whitespace-nowrap shrink-0 ${current.wrap} ${className}`}
       {...props}
     >
       {showDot && <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${current.dot}`} />}
-      <span>{children}</span>
+      <span className="whitespace-nowrap leading-none">{children}</span>
     </span>
   );
 }

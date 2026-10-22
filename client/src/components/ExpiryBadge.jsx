@@ -1,9 +1,10 @@
 import Badge from './Badge';
 
 // Renders an expiry status badge with formatted relative days and semantic status colors
-export default function ExpiryBadge({ expiryStatus, daysLeft, className = '' }) {
+export default function ExpiryBadge({ expiryStatus, status, daysLeft, className = '' }) {
   let label = 'Safe';
   let variant = 'safe';
+  const effectiveStatus = expiryStatus || status;
 
   if (daysLeft !== undefined && daysLeft !== null) {
     if (daysLeft < 0) {
@@ -19,9 +20,9 @@ export default function ExpiryBadge({ expiryStatus, daysLeft, className = '' }) 
       label = 'Safe';
       variant = 'safe';
     }
-  } else if (expiryStatus) {
-    variant = expiryStatus;
-    label = expiryStatus.charAt(0).toUpperCase() + expiryStatus.slice(1);
+  } else if (effectiveStatus) {
+    variant = effectiveStatus;
+    label = effectiveStatus.charAt(0).toUpperCase() + effectiveStatus.slice(1);
   }
 
   return (
