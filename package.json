@@ -1,0 +1,19 @@
+{
+  "name": "medilink",
+  "version": "1.0.0",
+  "description": "> **A modern web application connecting retail medical stores with licensed pharmaceutical suppliers for intelligent FEFO inventory tracking, near-expiry alerts, and direct wholesale procurement.**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.5"
+  }
+}

@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased min-h-screen selection:bg-brand-soft selection:text-brand;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-ink font-normal;
+    font-optical-sizing: auto;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Opacity-only page and row transitions: strictly zero transform/translate */
+@keyframes fadeInOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-fade-in {
+  animation: fadeInOpacity 180ms ease-out forwards;
+}
+
+.row-fade-in {
+  animation: fadeInOpacity 150ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  /* Type scale helpers */
+  .page-title {
+    @apply font-display text-[32px] font-medium text-ink leading-[1.15] tracking-[-0.01em];
+    font-optical-sizing: auto;
+  }
+
+  .panel-title {
+    @apply font-display text-[20px] font-medium text-ink leading-[1.15] tracking-[-0.01em];
+    font-optical-sizing: auto;
+  }
+
+  .stat-value {
+    @apply font-display text-[36px] font-medium text-ink leading-[1.15] tabular-nums tracking-[-0.01em];
+    font-optical-sizing: auto;
+  }
+
+  .body-ui {
+    @apply text-[14px] leading-[22px] font-sans font-normal text-ink;
+  }
+
+  .table-header {
+    @apply text-[12px] font-sans font-medium uppercase tracking-[0.04em] text-ink-soft;
+  }
+
+  .caption {
+    @apply text-[12px] font-sans font-normal text-ink-soft;
+  }
+
+  /* Reusable ledger panel */
+  .panel {
+    @apply bg-surface border border-line rounded-[10px] shadow-panel;
+  }
+
+  /* Base button: 40px high (36 for small), 14px Geist 500, 6px radius, icon + label 8px gap */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-sans font-medium text-[14px] h-10 px-4 rounded-[6px] border border-transparent transition-colors duration-150 ease-out select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-sm {
+    @apply h-9 px-3 text-xs gap-1.5;
+  }
+
+  /* Primary button: solid ink with paper text */
+  .btn-primary {
+    @apply bg-ink text-paper hover:bg-[#20362c] active:bg-[#0c1813] border-ink;
+  }
+
+  /* Accent button: vermilion for single key action */
+  .btn-accent {
+    @apply bg-accent text-surface hover:bg-[#cc4922] active:bg-[#b83e1a] border-accent;
+  }
+
+  /* Ghost button: 1px line border, white background */
+  .btn-ghost {
+    @apply bg-surface border border-line text-ink hover:bg-paper/60 active:bg-paper;
+  }
+
+  /* Standard form input: 42px high, 14px text, 1px line border, focus brand ring */
+  .input {
+    @apply w-full h-[42px] rounded-[6px] border border-line bg-surface px-3 text-[14px] text-ink font-sans placeholder:text-ink-soft/60 focus:outline-none focus:border-brand focus:ring-4 focus:ring-brand-soft/60 transition-colors duration-150 ease-out;
+  }
+
+  /* Form field label: 13px Geist 500 in ink-soft (sentence case) */
+  .label {
+    @apply block text-[13px] font-sans font-medium text-ink-soft mb-1.5;
+  }
+
+  /* Ledger badge: 12px Geist 500 (not mono), 22px high, 6px radius */
+  .badge {
+    @apply inline-flex items-center gap-1.5 h-[22px] px-2 rounded-[6px] text-[12px] font-sans font-medium border border-line bg-paper text-ink-soft;
+  }
+
+  /* Expiry status badges */
+  .badge-safe {
+    @apply bg-status-safe-bg text-status-safe border-[#bce1c7];
+  }
+
+  .badge-warning {
+    @apply bg-status-warning-bg text-status-warning border-[#f2de97];
+  }
+
+  .badge-critical {
+    @apply bg-status-critical-bg text-status-critical border-[#f9cbad];
+  }
+
+  .badge-expired {
+    @apply bg-status-expired-bg text-status-expired border-[#f5c2bc];
+  }
+
+  /* Soft ink skeleton loader */
+  .skeleton {
+    @apply bg-ink/[0.06] rounded-[6px] animate-[pulse_1.6s_ease-in-out_infinite];
+  }
+}
+
+/* Print layout: hide everything except printable invoice */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-invoice,
+  #printable-invoice * {
+    visibility: visible;
+  }
+  #printable-invoice {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 24px;
+    background: #ffffff !important;
+  }
+}
