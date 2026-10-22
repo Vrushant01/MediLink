@@ -23,7 +23,7 @@ if (!process.env.JWT_SECRET || !process.env.MONGO_URI) {
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+const CLIENT_URL = (process.env.CLIENT_URL || 'http://localhost:5173').replace(/\/$/, '');
 
 // Database connection
 connectDB();
@@ -31,10 +31,22 @@ connectDB();
 // Security headers with helmet
 app.use(helmet());
 
-// CORS configuration limited to CLIENT_URL
+// CORS configuration supporting CLIENT_URL, local development, and Vercel deployments
 app.use(
   cors({
-    origin: CLIENT_URL,
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const cleanOrigin = origin.replace(/\/$/, '');
+      if (
+        cleanOrigin === CLIENT_URL ||
+        cleanOrigin === 'http://localhost:5173' ||
+        cleanOrigin === 'http://localhost:3000' ||
+        cleanOrigin.endsWith('.vercel.app')
+      ) {
+        return callback(null, true);
+      }
+      return callback(new Error(`Origin ${origin} not allowed by CORS`));
+    },
     credentials: true,
   })
 );
