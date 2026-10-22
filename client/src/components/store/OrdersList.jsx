@@ -7,17 +7,46 @@ import { formatDate, formatINR } from '../../utils/format';
 export default function OrdersList({ orders = [], loading, isRefetching = false, onSelectOrder }) {
   if (loading) {
     return (
-      <div className="panel bg-surface divide-y divide-line overflow-hidden min-h-[520px]">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="p-4 flex items-center justify-between">
-            <Skeleton className="h-5 w-24" />
-            <Skeleton className="h-5 w-44" />
-            <Skeleton className="h-5 w-24" />
-            <Skeleton className="h-5 w-16" />
-            <Skeleton className="h-5 w-20" />
-            <Skeleton className="h-5 w-32" />
-          </div>
-        ))}
+      <div className="panel bg-surface overflow-x-auto min-h-[520px]">
+        <table className="w-full text-left border-collapse text-xs min-w-[760px]">
+          <thead>
+            <tr className="border-b border-line bg-paper/60 text-ink-soft uppercase text-[12px] font-sans font-medium tracking-[0.04em] h-10">
+              <th className="py-2.5 px-4 whitespace-nowrap">Order ID</th>
+              <th className="py-2.5 px-4">Supplier</th>
+              <th className="py-2.5 px-4 whitespace-nowrap">Date Placed</th>
+              <th className="py-2.5 px-4 whitespace-nowrap">Items</th>
+              <th className="py-2.5 px-4 text-right whitespace-nowrap pr-8">Total Amount</th>
+              <th className="py-2.5 px-4 text-right whitespace-nowrap">Progress</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-line/70">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <tr key={i} className="h-14">
+                <td className="py-3 px-4">
+                  <Skeleton className="h-4 w-20" />
+                </td>
+                <td className="py-3 px-4">
+                  <div className="space-y-1">
+                    <Skeleton className="h-4 w-40" />
+                    <Skeleton className="h-3 w-24 opacity-60" />
+                  </div>
+                </td>
+                <td className="py-3 px-4">
+                  <Skeleton className="h-4 w-24" />
+                </td>
+                <td className="py-3 px-4">
+                  <Skeleton className="h-4 w-14" />
+                </td>
+                <td className="py-3 px-4 text-right pr-8">
+                  <Skeleton className="h-4 w-20 ml-auto" />
+                </td>
+                <td className="py-3 px-4 text-right">
+                  <Skeleton className="h-5 w-32 ml-auto rounded-full" />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }

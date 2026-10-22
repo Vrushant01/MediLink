@@ -1,7 +1,21 @@
+import Skeleton from '../Skeleton';
 import { formatINR } from '../../utils/format';
 
 // 4-panel metric strip showing order statistics and cumulative spend
-export default function OrdersTopStrip({ summary }) {
+export default function OrdersTopStrip({ summary, loading = false }) {
+  if (loading) {
+    return (
+      <div className="panel bg-surface grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-line">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="p-5 flex flex-col justify-between h-[88px]">
+            <Skeleton className="h-3.5 w-24" />
+            <Skeleton className="h-7 w-20 mt-2" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   const stats = [
     { label: 'Orders placed', value: summary?.ordersPlaced || 0 },
     { label: 'In transit', value: summary?.ordersInTransit || 0 },

@@ -27,7 +27,7 @@ export default function Orders() {
 
   // Load orders and store summary metrics
   const { data: ordersData, loading, isRefetching, error, reload: reloadOrders } = useApi('/orders', queryParams);
-  const { data: summary, reload: reloadSummary } = useApi('/orders/store-summary');
+  const { data: summary, loading: summaryLoading, reload: reloadSummary } = useApi('/orders/store-summary');
 
   // 60-second periodic poll so status changes made by suppliers update dynamically
   useEffect(() => {
@@ -92,7 +92,7 @@ export default function Orders() {
       />
 
       {/* Top Strip */}
-      <OrdersTopStrip summary={summary} />
+      <OrdersTopStrip summary={summary} loading={summaryLoading} />
 
       {/* Underline Tabs */}
       <div className="border-b border-line flex items-center gap-6 overflow-x-auto">

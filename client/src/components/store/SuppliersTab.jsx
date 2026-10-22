@@ -9,7 +9,19 @@ export default function SuppliersTab({ suppliers = [], loading, onSelectSupplier
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {Array.from({ length: 6 }).map((_, i) => (
-          <Skeleton key={i} className="h-44 rounded-[10px]" />
+          <div key={i} className="panel bg-surface p-5 flex flex-col justify-between h-[190px]">
+            <div>
+              <Skeleton className="h-5 w-48" />
+              <div className="mt-3.5 space-y-2">
+                <Skeleton className="h-3.5 w-28" />
+                <Skeleton className="h-3.5 w-36" />
+              </div>
+            </div>
+            <div className="pt-3 border-t border-line/70 flex items-center justify-between">
+              <Skeleton className="h-3.5 w-28" />
+              <Skeleton className="h-7 w-28 rounded-[6px]" />
+            </div>
+          </div>
         ))}
       </div>
     );

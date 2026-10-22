@@ -21,17 +21,60 @@ export default function BrowseTable({
 
   if (loading) {
     return (
-      <div className="panel bg-surface divide-y divide-line overflow-hidden min-h-[520px]">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="p-4 flex items-center justify-between">
-            <Skeleton className="h-5 w-48" />
-            <Skeleton className="h-5 w-32" />
-            <Skeleton className="h-5 w-24" />
-            <Skeleton className="h-5 w-16" />
-            <Skeleton className="h-5 w-16" />
-            <Skeleton className="h-7 w-28" />
-          </div>
-        ))}
+      <div className="panel bg-surface overflow-x-auto min-h-[520px]">
+        <table className="w-full text-left border-collapse text-xs table-fixed min-w-[760px]">
+          <colgroup>
+            <col className="w-[30%]" />
+            <col className="w-[20%]" />
+            <col className="w-[20%]" />
+            <col className="w-[12%]" />
+            <col className="w-[8%]" />
+            <col className="w-[10%]" />
+          </colgroup>
+          <thead>
+            <tr className="border-b border-line bg-paper/60 text-ink-soft uppercase text-[12px] font-sans font-medium tracking-[0.04em] h-10">
+              <th className="py-2.5 px-4">Medicine</th>
+              <th className="py-2.5 px-4">Supplier</th>
+              <th className="py-2.5 px-4">Batch & Expiry</th>
+              <th className="py-2.5 px-4 text-right">Price per unit</th>
+              <th className="py-2.5 px-4 text-right">In stock</th>
+              <th className="py-2.5 px-4 text-right">Add</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-line/70">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <tr key={i} className="h-16">
+                <td className="py-3 px-4">
+                  <div className="space-y-1.5">
+                    <Skeleton className="h-4 w-44" />
+                    <Skeleton className="h-3 w-28 opacity-60" />
+                  </div>
+                </td>
+                <td className="py-3 px-4">
+                  <div className="space-y-1">
+                    <Skeleton className="h-3.5 w-36" />
+                    <Skeleton className="h-3 w-20 opacity-60" />
+                  </div>
+                </td>
+                <td className="py-3 px-4">
+                  <div className="space-y-1.5">
+                    <Skeleton className="h-3.5 w-24" />
+                    <Skeleton className="h-5 w-24 rounded-[6px]" />
+                  </div>
+                </td>
+                <td className="py-3 px-4 text-right">
+                  <Skeleton className="h-4 w-16 ml-auto" />
+                </td>
+                <td className="py-3 px-4 text-right">
+                  <Skeleton className="h-4 w-12 ml-auto" />
+                </td>
+                <td className="py-3 px-4 text-right">
+                  <Skeleton className="h-8 w-24 ml-auto rounded-[6px]" />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }

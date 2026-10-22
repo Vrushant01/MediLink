@@ -45,17 +45,62 @@ export default function AdminUsersTable({
 }) {
   if (loading) {
     return (
-      <div className="panel bg-surface divide-y divide-line overflow-hidden min-h-[520px]">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className="p-4 flex items-center justify-between">
-            <Skeleton className="h-5 w-44" />
-            <Skeleton className="h-5 w-20" />
-            <Skeleton className="h-5 w-28" />
-            <Skeleton className="h-5 w-32" />
-            <Skeleton className="h-5 w-24" />
-            <Skeleton className="h-5 w-16" />
-          </div>
-        ))}
+      <div className="panel bg-surface overflow-x-auto min-h-[520px]">
+        <table className="w-full text-left border-collapse text-xs table-fixed min-w-[760px]">
+          <colgroup>
+            <col className="w-[24%]" />
+            <col className="w-[10%]" />
+            <col className="w-[18%]" />
+            <col className="w-[16%]" />
+            <col className="w-[14%]" />
+            <col className="w-[8%]" />
+            <col className="w-[10%]" />
+          </colgroup>
+          <thead>
+            <tr className="border-b border-line bg-paper/60 text-ink-soft uppercase text-[12px] font-sans font-medium tracking-[0.04em] h-10">
+              <th className="py-2.5 px-4">Business</th>
+              <th className="py-2.5 px-4">Role</th>
+              <th className="py-2.5 px-4">Drug License</th>
+              <th className="py-2.5 px-4">City & Phone</th>
+              <th className="py-2.5 px-4">Registered</th>
+              <th className="py-2.5 px-4">Status</th>
+              <th className="py-2.5 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-line/70">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <tr key={i} className="h-16">
+                <td className="py-3 px-4">
+                  <div className="space-y-1.5">
+                    <Skeleton className="h-4 w-36" />
+                    <Skeleton className="h-3 w-24 opacity-60" />
+                  </div>
+                </td>
+                <td className="py-3 px-4">
+                  <Skeleton className="h-5 w-16 rounded-[6px]" />
+                </td>
+                <td className="py-3 px-4">
+                  <Skeleton className="h-4 w-28" />
+                </td>
+                <td className="py-3 px-4">
+                  <div className="space-y-1">
+                    <Skeleton className="h-3.5 w-20" />
+                    <Skeleton className="h-3 w-28 opacity-60" />
+                  </div>
+                </td>
+                <td className="py-3 px-4">
+                  <Skeleton className="h-4 w-20" />
+                </td>
+                <td className="py-3 px-4">
+                  <Skeleton className="h-5 w-16 rounded-[6px]" />
+                </td>
+                <td className="py-3 px-4 text-right">
+                  <Skeleton className="h-7 w-20 ml-auto rounded-[6px]" />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }

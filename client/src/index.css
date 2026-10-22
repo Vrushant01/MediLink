@@ -37,6 +37,27 @@
   animation: fadeInOpacity 150ms ease-out forwards;
 }
 
+/* Premium skeleton shimmer animation matching warm paper & ink theme */
+@keyframes shimmerWave {
+  0% {
+    background-position: 150% 0;
+  }
+  100% {
+    background-position: -150% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(20, 35, 29, 0.04) 0%,
+    rgba(20, 35, 29, 0.09) 50%,
+    rgba(20, 35, 29, 0.04) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerWave 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,

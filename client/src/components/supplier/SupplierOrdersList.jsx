@@ -16,15 +16,26 @@ export default function SupplierOrdersList({
 }) {
   if (loading) {
     return (
-      <div className="panel bg-surface divide-y divide-line overflow-hidden">
+      <div className="panel bg-surface divide-y divide-line/70 overflow-hidden">
         {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="p-4 flex items-center justify-between">
-            <Skeleton className="h-5 w-24" />
-            <Skeleton className="h-5 w-44" />
-            <Skeleton className="h-5 w-20" />
-            <Skeleton className="h-5 w-16" />
-            <Skeleton className="h-5 w-20" />
-            <Skeleton className="h-5 w-28" />
+          <div key={i} className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-3 h-20">
+            {/* Store & ID */}
+            <div className="flex items-center gap-4 min-w-[220px]">
+              <Skeleton className="h-4 w-16" />
+              <div className="space-y-1.5">
+                <Skeleton className="h-4 w-36" />
+                <Skeleton className="h-3 w-20 opacity-60" />
+              </div>
+            </div>
+
+            {/* Meta & Stage */}
+            <div className="flex items-center gap-4 sm:gap-6 justify-between md:justify-end flex-1">
+              <Skeleton className="h-3.5 w-16" />
+              <Skeleton className="h-3.5 w-14" />
+              <Skeleton className="h-4 w-20" />
+              <Skeleton className="h-6 w-20 rounded-full" />
+              <Skeleton className="h-8 w-24 rounded-[6px]" />
+            </div>
           </div>
         ))}
       </div>
