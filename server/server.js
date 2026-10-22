@@ -55,6 +55,15 @@ app.use(
 app.use(express.json());
 app.use(morgan('dev'));
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({
+    message: 'MediLink API is running successfully',
+    status: 'ok',
+    health: '/api/health',
+  });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
